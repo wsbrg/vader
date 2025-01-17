@@ -1,0 +1,7 @@
+Bootstrap: docker
+From: debian:bookworm
+
+%post
+	apt-get update && apt-get install -y python3 python3-pip python3.11-venv python3-opencv ffmpeg
+	pip3 install --break-system-packages torch torchvision ffmpeg-python click tqdm
+	python3 -c 'import torch; torch.hub.load("pytorch/vision:v0.10.0", "deeplabv3_resnet101", pretrained=True)'
