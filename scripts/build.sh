@@ -2,9 +2,12 @@
 
 set -e
 
+# Create directory for temporary files
+mkdir -p tmp
+
 # Attack dependencies
-apptainer build vader.sif vader.def
-apptainer build deeplab.sif deeplab.def
+APPTAINER_TMPDIR=$(pwd)/tmp apptainer build vader.sif vader.def
+APPTAINER_TMPDIR=$(pwd)/tmp apptainer build deeplab.sif deeplab.def
 
 # Baselines
 apptainer build baselines/hilgefort/hilgefort.sif baselines/hilgefort/hilgefort.def
