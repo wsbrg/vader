@@ -18,9 +18,9 @@ MAX_CHUNKSIZE = 128
 def metric_CIEDE2000(reconstruction, background, gt_mask):
     gt_mask = gt_mask > 0
     reconstruction = cv2.cvtColor(
-        reconstruction.astype(np.float32) / 255, cv2.COLOR_RGB2Lab
+        reconstruction.astype(np.float32) / 255, cv2.COLOR_BGR2Lab
     )
-    background = cv2.cvtColor(background.astype(np.float32) / 255, cv2.COLOR_RGB2Lab)
+    background = cv2.cvtColor(background.astype(np.float32) / 255, cv2.COLOR_BGR2Lab)
     delta_e = colour.delta_E(reconstruction, background, method="CIE 2000")
     delta_e[~gt_mask] = 254.0
 
